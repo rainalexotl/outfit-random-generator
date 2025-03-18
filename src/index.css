@@ -1,9 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300..800&family=Open+Sans:wght@300..800&display=swap');
 @import "tailwindcss";
 
-/* body {
-  margin: 0;
+@theme {
+  --font-header: "Montserrat", "sans";
+  --font-main: "Open Sans", "sans";
+
+  --color-body: #F5F5F5;
+  --color-tops: #87C0C9;
+  --color-bottoms: #F6B57E;
+  --color-outerwear: #9BBEAB;
+  --color-footwear: #9A9BBD;
+  --color-accessories: #F0A3A3;
+}
+
+body {
+  background-color: var(--color-body);
+  /* margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
-} */
+  min-height: 100vh; */
+}
