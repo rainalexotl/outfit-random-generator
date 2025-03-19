@@ -1,3 +1,5 @@
+import WardrobeItem from "./WardrobeItem.jsx";
+
 const INITIAL_WARDROBE = [
     { name: "Graphic Hoodie", category: "Tops" },
     { name: "Brown Loafers", category: "Footwear" },
@@ -33,10 +35,7 @@ export default function WardrobeTable() {
             </header>
             <section className="h-full bg-white rounded-[20px] p-[15px] overflow-scroll">
                 {INITIAL_WARDROBE.map((item) =>
-                    <div className="grid grid-cols-3 mb-[15px] bg-bottoms rounded-[10px] px-[15px] py-[12px] font-main font-semibold text-neutral-600 text-sm" >
-                        <p className="col-span-2">{item.name}</p>
-                        <p className="text-right">{item.category}</p>
-                    </div>
+                    <WardrobeItem item={item} />
                 )}
             </section>
         </section>
