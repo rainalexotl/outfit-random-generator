@@ -1,7 +1,7 @@
 import MainContent from './components/MainContent';
 import TableUpdateButtons from './components/TableUpdateButtons';
 
-function App() {
+const App = () => {
     return (
         <div className="flex flex-col h-screen w-screen">
             <h1 className="font-header font-semibold text-4xl text-neutral-600 mt-[60px] mx-auto">Outfit Suggestion App</h1>

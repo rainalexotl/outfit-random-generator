@@ -13,7 +13,7 @@ const ICON_PATH_LIST = {
     )
 };
 
-export default function Icon({ iconName, color, size="7", fill="none" }) {
+export const Icon = ({ iconName, color, size="7", fill="none" }) => {
     const iconClasses = `w-${size} h-${size} ${color}`
 
     return (
@@ -23,3 +23,5 @@ export default function Icon({ iconName, color, size="7", fill="none" }) {
         </svg>
     )
 }
+
+export default Icon;

@@ -1,6 +1,6 @@
 import Icon from "./Icon.jsx";
 
-export default function TableUpdateButtons() {
+export const TableUpdateButtons = () => {
     return (
         <section className="flex flex-row gap-3 ml-[30px] mb-2">
             <button>
@@ -12,3 +12,5 @@ export default function TableUpdateButtons() {
         </section>
     );
 }
+
+export default TableUpdateButtons;

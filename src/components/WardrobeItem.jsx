@@ -1,6 +1,6 @@
 import { categoryColors } from "../data.js";
 
-export default function WardrobeItem({ item }) {
+export const WardrobeItem = ({ item }) => {
 
     let itemClasses = "grid grid-cols-3 mb-[15px] rounded-[10px] \
     px-[15px] py-[12px] font-main font-semibold text-neutral-600 text-sm "
@@ -14,3 +14,5 @@ export default function WardrobeItem({ item }) {
         </div>
     );
 }
+
+export default WardrobeItem;
