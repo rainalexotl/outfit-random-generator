@@ -16,7 +16,7 @@ const categoryImg = {
 export const OutfitDisplay = () => {
 
     return (
-        <section className="flex flex-wrap justify-center items-center gap-7 w-4/10 p-[25px] bg-white rounded-[20px] ">
+        <section className="flex flex-wrap justify-center items-center gap-6 w-35/100 p-[25px] bg-white rounded-[20px] ">
             {imgs.map(item =>
                 <img className="max-h-36 max-w-36 object-cover rounded-[5px]" src={item} />
             )}
