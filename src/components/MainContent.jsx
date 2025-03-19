@@ -1,14 +1,13 @@
 import WardrobeTable from "./WardrobeTable.jsx";
 import OutfitFilter from "./OutfitFilter.jsx";
+import OutfitDisplay from "./OutfitDisplay.jsx";
 
 export const MainContent = () => {
     return (
-        <main className="flex flex-row h-full">
+        <main className="flex flex-row h-full justify-between">
             <WardrobeTable />
             <OutfitFilter />
-            <section className="w-1/3 bg-violet-800">
-                <p>Outfit goes here goes here</p>
-            </section>
+            <OutfitDisplay />
         </main>
     );
 }

@@ -24,7 +24,7 @@ export const OutfitFilter = () => {
 
     return (
         // flex flex-col items-center min-w-[125px]
-        <section className="flex flex-col items-center justify-center w-1/3">
+        <section className="flex flex-col items-center justify-center">
             <fieldset>
                 {categoryOptions.map((category) =>
                     <div key={category} className="flex items-center gap-3 mb-2.5">
