@@ -29,10 +29,12 @@ export const WardrobeItem = ({ item }) => {
 
     const handleNameChange = (event) => {
         setNewName(event.target.value);
+        setInvalidName(event.target.value.trim() === "");
     }
 
     const handleCategoryChange = (event) => {
         setNewCategory(event.target.value);
+        setInvalidCategory(event.target.value.trim() === "");
     }
 
     const handleCheckClicked = (itemInfoToSave) => {
