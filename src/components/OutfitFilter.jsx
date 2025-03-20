@@ -1,7 +1,11 @@
+import axios from "axios";
+
 import { useState } from "react";
 import { categoryColors } from "../data";
 
 const categoryOptions = Object.keys(categoryColors);
+const APIKEY = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
+const UNSPLASH_URL = `https://api.unsplash.com/search/photos?client_id=${APIKEY}`
 
 export const OutfitFilter = () => {
 
@@ -20,6 +24,22 @@ export const OutfitFilter = () => {
 
             return newOptions;
         });
+    }
+
+    const handleGenerateClick = async () => {
+        console.log("Generate clicked", selectedOptions);
+        const queryUrl = `${UNSPLASH_URL}&query=dog`
+
+        try {
+            const response = await axios.get(queryUrl, {
+                onDownloadProgress: (progressEvent) => {
+                    console.log(progressEvent.lengthComputable)
+                }
+            });
+            console.log(response.data);
+        } catch (error) {
+            console.error("Something went wrong:", error.message)
+        }
     }
 
     return (
@@ -44,7 +64,7 @@ export const OutfitFilter = () => {
             <button 
                 disabled={selectedOptions.size === 0} 
                 className="w-[110px] mt-5 px-6 py-2 rounded-[10px] font-main font-semibold text-sm bg-enabled-button text-neutral-600 disabled:bg-disabled-buttons disabled:text-neutral-400"
-                onClick={() => console.log("Genearate Clicked", selectedOptions)}
+                onClick={handleGenerateClick}
             >
                 Generate
             </button>
