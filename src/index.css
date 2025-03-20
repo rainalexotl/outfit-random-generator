@@ -6,15 +6,18 @@
   --font-main: "Open Sans", "sans";
 
   --color-body: #F5F5F5;
-  --color-tops: #87C0C9;
+  /* --color-tops: #87C0C9;
   --color-bottoms: #F6B57E;
   --color-outerwear: #9BBEAB;
   --color-footwear: #9A9BBD;
-  --color-accessories: #F0A3A3;
+  --color-accessories: #FFE4B1; */
 
   --color-checkbox-outline: #EDEBEB;
   --color-enabled-button: #87C0C9;
   --color-disabled-buttons: #D9D9D9;
+
+  --color-item-add-edit: #F5F5F5;
+  --color-input-bg: #D9D9D9;
 }
 
 body {
