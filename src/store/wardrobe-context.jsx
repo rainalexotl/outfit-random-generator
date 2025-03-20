@@ -4,14 +4,17 @@ import { INITIAL_WARDROBE } from "../data.js";
 
 export const WardrobeContext = createContext({
     wardrobe: [],
-    addItem: () => {},
-    editItem: () => {},
-    deleteItem: () => {}
+    isEditing: false,
+    addNewItem: () => {},
+    saveItem: () => {},
+    deleteItem: () => {},
+    toggleEditMode: () => {}
 });
 
 const WardrobeContextProvider = ({ children }) => {
 
     const [ wardrobe, setWardrobe ] = useState(INITIAL_WARDROBE);
+    const [ isEditing, setIsEditing ] = useState(false);
 
     const handleAddNewItem = (newItem) => {
         setWardrobe(prevWardrobe => {
@@ -36,11 +39,37 @@ const WardrobeContextProvider = ({ children }) => {
         );
     }
 
+    const toggleIsEditing = () => {
+        setIsEditing(prevValue => !prevValue);
+        setWardrobe(prevWardrobe => 
+            prevWardrobe.map(item => (
+                {
+                    ...item,
+                    editMode: false
+                }
+            )).filter(item => item.name.trim() !== "" && item.category.trim() !== "")
+        )
+    }
+
+    const toggleItemEditMode = (itemToEdit) => {
+        setWardrobe(prevWardrobe =>
+            prevWardrobe.map(item =>
+                item.id !== itemToEdit.id ? item : {
+                    ...itemToEdit,
+                    editMode: true
+                }
+            )
+        )
+    }
+
     const wardrobeContextValue = {
         wardrobe,
+        isEditingWardrobe: isEditing,
+        toggleIsEditingWardrobe: toggleIsEditing,
         addNewItem: handleAddNewItem,
         saveItem: handleSaveItem,
-        deleteItem: handleDeleteItem
+        deleteItem: handleDeleteItem,
+        toggleEditMode: toggleItemEditMode
     }
 
     return (
