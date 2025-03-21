@@ -1,15 +1,23 @@
 import axios from "axios";
+import slugify from "slugify";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { categoryColors } from "../data";
+import { WardrobeContext } from "../store/wardrobe-context";
 
 const categoryOptions = Object.keys(categoryColors);
 const APIKEY = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
 const UNSPLASH_URL = `https://api.unsplash.com/search/photos?client_id=${APIKEY}`
 
+function filterWardrobe(wardrobe, category) {
+    // filters wardrobe by category
+    return wardrobe.filter(item => item.category === category);
+}
+
 export const OutfitFilter = () => {
 
     const [ selectedOptions, setSelectedOptions ] = useState(new Set());
+    const { wardrobe } = useContext(WardrobeContext);
 
     const handleCategoryChange = (event) => {
         const { value, checked } = event.target;
@@ -27,19 +35,28 @@ export const OutfitFilter = () => {
     }
 
     const handleGenerateClick = async () => {
-        console.log("Generate clicked", selectedOptions);
-        const queryUrl = `${UNSPLASH_URL}&query=dog`
-
-        try {
-            const response = await axios.get(queryUrl, {
-                onDownloadProgress: (progressEvent) => {
-                    console.log(progressEvent.lengthComputable)
-                }
-            });
-            console.log(response.data);
-        } catch (error) {
-            console.error("Something went wrong:", error.message)
+        let suggestions = [];
+        for (const category of selectedOptions) {
+            console.log(category);
+            const filteredWardrobe = filterWardrobe(wardrobe, category); // filter in only items that match category
+            const selectedItem = filteredWardrobe[Math.floor(Math.random() * filteredWardrobe.length)]; // randomly choose item from category
+            const slug = slugify(selectedItem.name);
+            const queryUrl = `${UNSPLASH_URL}&query=${slug}`;
+            try {
+                const response = await axios.get(queryUrl);
+                const top10 = response.data.results;
+                // const suggestion = top10[Math.floor(Math.random() * top10.length)]; // random select from top 10
+                const suggestion = top10[0]; // most relevant result
+                suggestions.push({
+                    name: selectedItem.name,
+                    category: selectedItem.category,
+                    imgUrl: suggestion.urls.small
+                });
+            } catch (error) {
+                console.error("Something went wrong:", error.message);
+            }
         }
+        console.log(suggestions);
     }
 
     return (
