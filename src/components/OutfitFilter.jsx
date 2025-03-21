@@ -17,7 +17,7 @@ function filterWardrobe(wardrobe, category) {
 export const OutfitFilter = () => {
 
     const [ selectedOptions, setSelectedOptions ] = useState(new Set());
-    const { wardrobe } = useContext(WardrobeContext);
+    const { wardrobe, generateSuggestions } = useContext(WardrobeContext);
 
     const handleCategoryChange = (event) => {
         const { value, checked } = event.target;
@@ -56,7 +56,9 @@ export const OutfitFilter = () => {
                 console.error("Something went wrong:", error.message);
             }
         }
-        console.log(suggestions);
+
+        // set suggestions
+        generateSuggestions(suggestions);
     }
 
     return (
